@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PictureBasketApi.Models;
+using PictureBasketApi.Services.Interfaces;
 
 namespace PictureBasketApi.Controllers
 {
@@ -7,15 +8,25 @@ namespace PictureBasketApi.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
+        private readonly IOrderService _orderService;
+
+        public OrderController(IOrderService orderService)
+        {
+            this._orderService = orderService;
+        }
+
         [HttpPost]
         public IActionResult CreateOrder(Order order)
         {
-            return Ok();
+            var newId = _orderService.Create(order);
+
+            return Ok(newId);
         }
 
+        [HttpGet]
         public IActionResult GetById(int id)
         {
-            return Ok(new Order());
+            return Ok(_orderService.GetById(id));
         }
     }
 }

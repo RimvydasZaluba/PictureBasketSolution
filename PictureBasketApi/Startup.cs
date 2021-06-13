@@ -4,6 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using PictureBasketApi.Repositories;
+using PictureBasketApi.Repositories.Interfaces;
+using PictureBasketApi.Services;
+using PictureBasketApi.Services.Interfaces;
 
 namespace PictureBasketApi
 {
@@ -19,6 +23,9 @@ namespace PictureBasketApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            InjectRepositories(services);
+            InjectServices(services);
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -57,6 +64,18 @@ namespace PictureBasketApi
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void InjectRepositories(IServiceCollection services)
+        {
+            services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+        }
+
+        private void InjectServices(IServiceCollection services)
+        {
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IProductTypeService, ProductTypeService>();
         }
     }
 }

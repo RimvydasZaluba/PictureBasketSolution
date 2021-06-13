@@ -10,5 +10,12 @@ namespace PictureBasketApi.Services.Interfaces
         /// <param name="id">order id</param>
         /// <returns></returns>
         Order GetById(int id);
+
+        /// <summary>
+        /// Create an Order record
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        int Create(Order order);
     }
 }
