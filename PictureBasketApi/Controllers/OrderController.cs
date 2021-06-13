@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PictureBasketApi.Models;
 using PictureBasketApi.Services.Interfaces;
+using System.Linq;
 
 namespace PictureBasketApi.Controllers
 {
@@ -26,7 +27,24 @@ namespace PictureBasketApi.Controllers
         [HttpGet]
         public IActionResult GetById(int id)
         {
-            return Ok(_orderService.GetById(id));
+            var order = _orderService.GetById(id);
+
+            // calclate bin width
+
+            double binWidth = 0;
+
+            order.Items.Sum(o => (o.Product.Width * o.Quantity));
+
+            foreach (var item in order.Items)
+            {
+                int multiplier = item.Product.StackLimit > 1
+                    ? (item.Quantity / item.Product.StackLimit + 1)
+                    : item.Quantity;
+
+                binWidth += item.Product.Width * multiplier;
+            }
+
+            return Ok(order);
         }
     }
 }
