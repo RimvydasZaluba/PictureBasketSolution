@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PictureBasketApi.Models;
 using PictureBasketApi.Services.Interfaces;
+using PictureBasketApi.Utils;
 using System;
 using System.Linq;
 
@@ -60,7 +61,9 @@ namespace PictureBasketApi.Controllers
                 return NotFound();
             }
 
-            return Ok(order);
+            var orderDto = MapOrder(order);
+
+            return Ok(orderDto);
         }
 
         /// <summary>
@@ -71,7 +74,28 @@ namespace PictureBasketApi.Controllers
         [Route("get-all")]
         public IActionResult GetAll()
         {
-            return Ok(_orderService.GetAll());
+            return Ok(
+                _orderService
+                    .GetAll()
+                    .Select(x => MapOrder(x))
+                );
+        }
+
+        private object MapOrder(Order order)
+        {
+            return new OrderDto
+            {
+                Id = order.Id,
+                Items = order.Items
+                    .Select(x =>
+                        new OrderItemDto
+                        {
+                            ProductName = x.Product.Title,
+                            Quantity = x.Quantity
+                        })
+                    .ToList(),
+                RequiredBinWidth = BinWidthCalculator.Calculate(order)
+            };
         }
     }
 }

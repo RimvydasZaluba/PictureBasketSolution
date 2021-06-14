@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureBasketApi", "PictureBasketApi\PictureBasketApi.csproj", "{D20749BE-0467-42C0-8B10-4C0FC3A75CAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PictureBasketApi", "PictureBasketApi\PictureBasketApi.csproj", "{D20749BE-0467-42C0-8B10-4C0FC3A75CAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureBasketApi.Tests", "PictureBasketApi.Tests\PictureBasketApi.Tests.csproj", "{335E699E-547C-4FFE-B24B-C8D51F7B4D19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D20749BE-0467-42C0-8B10-4C0FC3A75CAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D20749BE-0467-42C0-8B10-4C0FC3A75CAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D20749BE-0467-42C0-8B10-4C0FC3A75CAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{335E699E-547C-4FFE-B24B-C8D51F7B4D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{335E699E-547C-4FFE-B24B-C8D51F7B4D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{335E699E-547C-4FFE-B24B-C8D51F7B4D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{335E699E-547C-4FFE-B24B-C8D51F7B4D19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
