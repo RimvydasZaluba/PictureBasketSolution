@@ -1,6 +1,7 @@
 ﻿using PictureBasketApi.Models;
 using PictureBasketApi.Repositories.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PictureBasketApi.Repositories
 {
@@ -15,9 +16,14 @@ namespace PictureBasketApi.Repositories
             new ProductType {Id = 5, Title = "Mug", Width = 94, StackLimit = 4},
         };
 
-        public ICollection<ProductType> GetAll()
+        public List<ProductType> GetAll()
         {
             return _productTypes;
+        }
+
+        public ProductType GetById(int id)
+        {
+            return _productTypes.FirstOrDefault(o => o.Id == id);
         }
     }
 }

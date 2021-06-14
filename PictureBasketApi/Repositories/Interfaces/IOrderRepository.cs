@@ -1,20 +1,27 @@
 ﻿using PictureBasketApi.Models;
+using System.Collections.Generic;
 
 namespace PictureBasketApi.Repositories.Interfaces
 {
     public interface IOrderRepository
     {
         /// <summary>
-        /// Create an Order record
+        /// Create an order record
         /// </summary>
         /// <param name="order"></param>
-        int Create(Order order);
+        int Create(CreateOrderModel order);
 
         /// <summary>
-        /// Retrieve Order by id
+        /// Retrieve order by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         Order GetById(int id);
+
+        /// <summary>
+        /// Retrieve all orders
+        /// </summary>
+        /// <returns></returns>
+        List<Order> GetAll();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using PictureBasketApi.Models;
 using PictureBasketApi.Repositories.Interfaces;
 using PictureBasketApi.Services.Interfaces;
+using System.Collections.Generic;
 
 namespace PictureBasketApi.Services
 {
@@ -13,9 +14,14 @@ namespace PictureBasketApi.Services
             this._orderRepository = orderRepository;
         }
 
-        public int Create(Order order)
+        public int Create(CreateOrderModel order)
         {
             return _orderRepository.Create(order);
+        }
+
+        public List<Order> GetAll()
+        {
+            return _orderRepository.GetAll();
         }
 
         public Order GetById(int id)

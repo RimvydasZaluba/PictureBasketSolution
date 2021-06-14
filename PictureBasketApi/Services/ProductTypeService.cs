@@ -2,7 +2,6 @@
 using PictureBasketApi.Repositories.Interfaces;
 using PictureBasketApi.Services.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace PictureBasketApi.Services
 {
@@ -17,7 +16,7 @@ namespace PictureBasketApi.Services
 
         public List<ProductType> GetAll()
         {
-            return _productTypeRepository.GetAll().ToList();
+            return _productTypeRepository.GetAll();
         }
     }
 }

@@ -9,6 +9,12 @@ namespace PictureBasketApi.Repositories.Interfaces
         /// Retrieve all product types in the system
         /// </summary>
         /// <returns></returns>
-        public ICollection<ProductType> GetAll();
+        public List<ProductType> GetAll();
+
+        /// <summary>
+        /// Get a product type by id
+        /// </summary>
+        /// <returns></returns>
+        public ProductType GetById(int id);
     }
 }
