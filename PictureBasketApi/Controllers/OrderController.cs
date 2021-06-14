@@ -80,7 +80,5 @@ namespace PictureBasketApi.Controllers
                     .Select(x => Mapper.MapOrder(x))
                 );
         }
-
-        private
     }
 }
