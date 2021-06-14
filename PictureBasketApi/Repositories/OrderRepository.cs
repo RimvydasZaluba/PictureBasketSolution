@@ -18,8 +18,12 @@ namespace PictureBasketApi.Repositories
 
         public int Create(CreateOrderModel order)
         {
-            var nextId = _orders.Any() ? _orders.Max(o => o.Id) + 1 : 1;
-            var newOrder = new Order { Id = nextId, Items = new List<OrderItem>() };
+            if (_orders.Any(o => o.Id == order.OrderId))
+            {
+                throw new ArgumentException("This orer id already exists: " + order.OrderId);
+            }
+
+            var newOrder = new Order { Id = order.OrderId, Items = new List<OrderItem>() };
 
             foreach (var item in order.Items)
             {
@@ -33,7 +37,7 @@ namespace PictureBasketApi.Repositories
 
             _orders.Add(newOrder);
 
-            return nextId;
+            return newOrder.Id;
         }
 
         public List<Order> GetAll()

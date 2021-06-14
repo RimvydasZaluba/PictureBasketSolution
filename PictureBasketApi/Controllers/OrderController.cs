@@ -35,13 +35,21 @@ namespace PictureBasketApi.Controllers
 
             var productIds = _productTypeService.GetAll().Select(o => o.Id);
             var nonExistantProductIds = order.Items.Select(o => o.ProductId).Except(productIds);
+            var newId = 0;
 
             if (nonExistantProductIds.Any())
             {
                 return BadRequest("Some products do not exist in the system: " + String.Join(", ", nonExistantProductIds));
             }
 
-            var newId = _orderService.Create(order);
+            try
+            {
+                newId = _orderService.Create(order);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
             return Ok(newId);
         }
