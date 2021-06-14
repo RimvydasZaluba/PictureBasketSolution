@@ -61,7 +61,7 @@ namespace PictureBasketApi.Controllers
                 return NotFound();
             }
 
-            var orderDto = MapOrder(order);
+            var orderDto = Mapper.MapOrder(order);
 
             return Ok(orderDto);
         }
@@ -77,25 +77,10 @@ namespace PictureBasketApi.Controllers
             return Ok(
                 _orderService
                     .GetAll()
-                    .Select(x => MapOrder(x))
+                    .Select(x => Mapper.MapOrder(x))
                 );
         }
 
-        private object MapOrder(Order order)
-        {
-            return new OrderDto
-            {
-                Id = order.Id,
-                Items = order.Items
-                    .Select(x =>
-                        new OrderItemDto
-                        {
-                            ProductName = x.Product.Title,
-                            Quantity = x.Quantity
-                        })
-                    .ToList(),
-                RequiredBinWidth = BinWidthCalculator.Calculate(order)
-            };
-        }
+        private
     }
 }
